@@ -2,9 +2,6 @@ import streamlit as st
 import pandas as pd
 import pickle 
 #import sklearn as sklearn
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-
 
 st.title('Proyecto Individual Cohorte 10')
 
@@ -111,43 +108,43 @@ if ejecutar:
 
 #MODELO DE PREDICCION 
 
-movies_crop = df['title'].head(20000).to_frame()
+# movies_crop = df['title'].head(20000).to_frame()
 
-#from sklearn.feature_extraction.text import CountVectorizer
-cv = CountVectorizer(max_features=1000,stop_words='english')
+# from sklearn.feature_extraction.text import CountVectorizer
+# cv = CountVectorizer(max_features=1000,stop_words='english')
 
-#from sklearn.metrics.pairwise import cosine_similarity
-
-
-vector = cv.fit_transform(movies_crop['title']).toarray()
-similarity = cosine_similarity(vector)
+# from sklearn.metrics.pairwise import cosine_similarity
 
 
-movies_dict = pickle.load(open('listado.pkl', 'rb'))
-movies = pd.DataFrame(movies_dict)
+# vector = cv.fit_transform(movies_crop['title']).toarray()
+# similarity = cosine_similarity(vector)
+
+
+# movies_dict = pickle.load(open('listado.pkl', 'rb'))
+# movies = pd.DataFrame(movies_dict)
 
 
 
-def recommend(movie):
-    movie_index = movies[movies['title'] == movie].index[0]
-    distances = similarity[movie_index]
-    movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:6]
+# def recommend(movie):
+#     movie_index = movies[movies['title'] == movie].index[0]
+#     distances = similarity[movie_index]
+#     movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:6]
 
-    recommended_movies = []
-    for i in movies_list:
-        recommended_movies.append(movies.iloc[i[0]].title)
-    return recommended_movies
+#     recommended_movies = []
+#     for i in movies_list:
+#         recommended_movies.append(movies.iloc[i[0]].title)
+#     return recommended_movies
 
 
-st.subheader('Lista de recomendaciones:')
+# st.subheader('Lista de recomendaciones:')
 
-movie_name = st.selectbox(
-    'Seleccione una pelicula',
-    movies['title'].values
-)
+# movie_name = st.selectbox(
+#     'Seleccione una pelicula',
+#     movies['title'].values
+# )
 
-recomendar = st.button("Recomendar")
-if recomendar:
-    recommendations = recommend(movie_name)
-    for i in recommendations:
-        st.write(i)
+# recomendar = st.button("Recomendar")
+# if recomendar:
+#     recommendations = recommend(movie_name)
+#     for i in recommendations:
+#         st.write(i)
