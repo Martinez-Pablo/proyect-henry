@@ -1,7 +1,9 @@
 import streamlit as st 
 import pandas as pd
 import pickle 
-import sklearn as sklearn
+#import sklearn as sklearn
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 st.title('Proyecto Individual Cohorte 10')
@@ -111,10 +113,10 @@ if ejecutar:
 
 movies_crop = df['title'].head(20000).to_frame()
 
-from sklearn.feature_extraction.text import CountVectorizer
+#from sklearn.feature_extraction.text import CountVectorizer
 cv = CountVectorizer(max_features=1000,stop_words='english')
 
-from sklearn.metrics.pairwise import cosine_similarity
+#from sklearn.metrics.pairwise import cosine_similarity
 
 
 vector = cv.fit_transform(movies_crop['title']).toarray()
