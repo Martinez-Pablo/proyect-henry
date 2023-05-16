@@ -116,30 +116,30 @@ if ejecutar:
 # vector = cv.fit_transform(movies_crop['title']).toarray()
 # similarity = cosine_similarity(vector)
 
-movies_dict = pickle.load(open('listado.pkl', 'rb'))
-movies = pd.DataFrame(movies_dict)
+# movies_dict = pickle.load(open('listado.pkl', 'rb'))
+# movies = pd.DataFrame(movies_dict)
 
-# Función de recomendación
-def recommend(movie):
-    movie_index = movies[movies['title'] == movie].index[0]
-    distances = similarity[movie_index]
-    movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:6]
+# # Función de recomendación
+# def recommend(movie):
+#     movie_index = movies[movies['title'] == movie].index[0]
+#     distances = similarity[movie_index]
+#     movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:6]
 
-    recommended_movies = []
-    for i in movies_list:
-        recommended_movies.append(movies.iloc[i[0]].title)
-    return recommended_movies
+#     recommended_movies = []
+#     for i in movies_list:
+#         recommended_movies.append(movies.iloc[i[0]].title)
+#     return recommended_movies
 
-# Interfaz de usuario con Streamlit
-st.subheader('Lista de recomendaciones:')
+# # Interfaz de usuario con Streamlit
+# st.subheader('Lista de recomendaciones:')
 
-movie_name = st.selectbox(
-    'Seleccione una película',
-    movies['title'].values
-)
+# movie_name = st.selectbox(
+#     'Seleccione una película',
+#     movies['title'].values
+# )
 
-recomendar = st.button("Recomendar")
-if recomendar:
-    recommendations = recommend(movie_name)
-    for i in recommendations:
-        st.write(i)
+# recomendar = st.button("Recomendar")
+# if recomendar:
+#     recommendations = recommend(movie_name)
+#     for i in recommendations:
+#         st.write(i)
