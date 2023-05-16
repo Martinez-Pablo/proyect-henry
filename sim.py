@@ -9,7 +9,7 @@ columns = ['release_month', 'release_day', 'production_countries', 'belongs_to_c
 df = pd.read_csv('./movies_clean.csv', usecols = columns)
 
 movies_crop = df['title'].head(17000).to_frame()  # Asegúrate de tener df definido previamente
-cv = CountVectorizer(max_features=700, stop_words='english')
+cv = CountVectorizer(max_features=500, stop_words='english')
 vector = cv.fit_transform(movies_crop['title']).toarray()
 similarity = cosine_similarity(vector)
 
