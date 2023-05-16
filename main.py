@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 import pickle
-# from sklearn.feature_extraction.text import CountVectorizer
-# from sklearn.metrics.pairwise import cosine_similarity
 from sim import similarity
 
 st.title('Proyecto Individual Cohorte 10')
@@ -110,12 +108,6 @@ if ejecutar:
 
 #MODELO DE PREDICCION 
 
-# Cargar datos y modelos necesarios
-# movies_crop = df['title'].head(20000).to_frame()  # Asegúrate de tener df definido previamente
-# cv = CountVectorizer(max_features=1000, stop_words='english')
-# vector = cv.fit_transform(movies_crop['title']).toarray()
-# similarity = cosine_similarity(vector)
-
 movies_dict = pickle.load(open('listado.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
 
@@ -130,7 +122,7 @@ def recommend(movie):
         recommended_movies.append(movies.iloc[i[0]].title)
     return recommended_movies
 
-# Interfaz de usuario con Streamlit
+
 st.subheader('Lista de recomendaciones:')
 
 movie_name = st.selectbox(
