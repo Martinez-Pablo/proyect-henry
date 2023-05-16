@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 # from sklearn.feature_extraction.text import CountVectorizer
 # from sklearn.metrics.pairwise import cosine_similarity
-from sim import similarity
+# from sim import similarity
 
 st.title('Proyecto Individual Cohorte 10')
 
