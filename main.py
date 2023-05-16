@@ -1,7 +1,7 @@
 import streamlit as st 
 import pandas as pd
 import pickle 
-#import sklearn 
+import sklearn as sklearn
 
 
 st.title('Proyecto Individual Cohorte 10')
