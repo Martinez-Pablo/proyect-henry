@@ -1,11 +1,30 @@
+.css-1tloi1o {
+    background: rgb(202,217,202);
+    background: linear-gradient(45deg, rgba(202,217,202,1) 25%, rgba(167,227,193,1) 50%, rgba(224,210,197,1) 90%);
+}
 
 h1 {
     text-align: center;
     color: rgb(0, 0, 0);
 }
 
+h3 {
+    color: rgb(20, 1, 1);
+}
+
+p {
+    color: rgb(20, 1, 1);
+}
+
+.st-bw{
+    background-color: #c3c4c3 ;
+}
 
 code {
-    color: black;
+    color: rgb(0, 0, 0);
     background-color: #e0d2c5;
+}
+
+.css-1r8j384 {
+    background-color: #cad9ca;
 }
