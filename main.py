@@ -3,7 +3,10 @@ import pandas as pd
 import pickle
 from sim import similarity
 
-st.title('Proyecto Individual Cohorte 10')
+with open('style.css') as f:
+    st.markdown(f'<style>{f.read()}<style>', unsafe_allow_html = True)
+
+st.title('Recomendación de Peliculas')
 
 st.markdown('***')
 
@@ -14,9 +17,9 @@ columns = ['release_month', 'release_day', 'production_countries', 'belongs_to_c
 
 df = pd.read_csv('./movies_clean.csv', usecols = columns)
 
-st.title('Preguntas sobre nuestros datos')
+st.title('Consultas relevantes')
 
-st.subheader('Función 1: ¿Cuantas peliculas se estrenaron en el siguiente mes? :')
+st.subheader('¿Cuantas peliculas se estrenaron en el siguiente mes? :')
 mes = st.text_input('Ingrese el nombre del mes:', 'por ejemplo: enero')
 
 def peliculas_mes(mes : str):
@@ -27,7 +30,7 @@ def peliculas_mes(mes : str):
 valores = peliculas_mes(mes)
 st.write('La cantidad de peliculas que se estrenaron en ', valores[0], ' fue: ', valores[1])
 
-st.subheader('Función 2: ¿Cuantas peliculas se estrenaron en el siguiente dia de la semana? :')
+st.subheader('¿Cuantas peliculas se estrenaron en el siguiente dia de la semana? :')
 dia = st.text_input('Ingrese el nombre del dia:', 'por ejemplo: lunes')
 
 def peliculas_dia(dia : str):
@@ -38,7 +41,7 @@ def peliculas_dia(dia : str):
 valores = peliculas_dia(dia)
 st.write('La cantidad de peliculas que se estrenaron el dia ', valores[0], ' fue: ', valores[1])
 
-st.subheader('Función 3: ¿Cual es la cantidad de peliculas, ganancia total y ganancia promedio que tuvo la siguiente franquicia? :')
+st.subheader('¿Cual es la cantidad de peliculas, ganancia total y ganancia promedio que tuvo la siguiente franquicia? :')
 franquicia = st.text_input('Ingrese el nombre de la franquicia que desea conocer los datos', 'Nombre de la franquicia')
 
 def franquicias(franquicia : str):
@@ -57,7 +60,7 @@ def franquicias(franquicia : str):
 valores = franquicias(franquicia)
 st.write('La franquicia ', valores[0], ' tiene ', valores[1], ' peliculas, su ganancia total fue de U$D', valores[2], ' y su ganancia promedio del ', valores[3])
 
-st.subheader('Función 4: ¿Cuantas peliculas se produjeron en el siguiente pais? :')
+st.subheader('¿Cuantas peliculas se produjeron en el siguiente pais? :')
 pais = st.text_input('Ingrese un pais:', 'Por ejemplo United States of America')
 
 def peliculas_pais(pais : str):
@@ -74,7 +77,7 @@ def peliculas_pais(pais : str):
 valores = peliculas_pais(pais)
 st.write('En ', valores[0], ' se produjeron  ', valores[1])
 
-st.subheader('Función 5: ¿Cual fue la ganancia total y la cantidad de peliculas que produjo la siguiente productora? :')
+st.subheader('¿Cual fue la ganancia total y la cantidad de peliculas que produjo la siguiente productora? :')
 productora = st.text_input('Ingrese el nombre de una productora:', 'Por ejemplo Pixar Animation Studios')
 
 def productoras(productora):
@@ -87,7 +90,7 @@ def productoras(productora):
 valores = productoras(productora)
 st.write('La productora ', valores[0], ' tuvo una ganancia total de U$D', valores[1], ' y produjo ', valores[2])
 
-st.subheader('Función 6: Ingrese el nombre de una pelicula para conocer cual fue su inversion, ganancia, retorno y el año en que se lanzo:')
+st.subheader('Ingrese el nombre de una pelicula para conocer cual fue su inversion, ganancia, retorno y el año en que se lanzo:')
 pelicula = st.text_input('Ingrese el nombre de una pelicula:', 'Por ejemplo Toy Story')
 
 def retorno_pelicula(pelicula:str):
@@ -108,6 +111,8 @@ if ejecutar:
 
 #MODELO DE PREDICCION 
 
+st.title('Sistema de Recomendación')
+
 movies_dict = pickle.load(open('listado.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
 
@@ -123,7 +128,7 @@ def recommend(movie):
     return recommended_movies
 
 
-st.subheader('Función 7: Lista de recomendaciones:')
+st.subheader('Lista de recomendaciones:')
 
 movie_name = st.selectbox(
     'Seleccione una película',
